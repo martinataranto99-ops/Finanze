@@ -1,6 +1,6 @@
 // Service worker: tiene l'app in memoria per l'uso offline.
 // Quando pubblichi una nuova versione dell'app, aumenta il numero qui sotto.
-const CACHE="finanze-v3";
+const CACHE="finanze-v4";
 const FILES=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./apple-touch-icon.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
